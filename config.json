@@ -1,0 +1,409 @@
+{
+  "site": {
+    "title": "Cyber Attack Simulator",
+    "subtitle": "5-in-1 Interactive Security Education Lab",
+    "logo": "🛡️",
+    "description": "Understand 5 types of web attacks through interactive demos, real-world examples, code snippets, and quizzes.",
+    "footerText": "⚠️ Educational Purpose Only — Use This Knowledge to Stay Safe Online",
+    "footerSubtext": "Built for Cybersecurity Awareness & Education",
+    "defaultAttack": 0,
+    "showHeroStats": true,
+    "showComparisonTable": true,
+    "showGlossary": true,
+    "showProgressTracker": true
+  },
+
+  "theme": {
+    "bodyBg": "bg-gray-950",
+    "cardBg": "rgba(255,255,255,0.05)",
+    "accentGradient": "from-orange-500 via-red-500 to-pink-500",
+    "fontMain": "Inter",
+    "fontMono": "JetBrains Mono"
+  },
+
+  "heroStats": [
+    { "value": "3.4B+", "label": "Phishing Emails Per Day", "icon": "📧" },
+    { "value": "$10.5T", "label": "Cybercrime Cost by 2025", "icon": "💰" },
+    { "value": "82%", "label": "Breaches Involve Humans", "icon": "👤" },
+    { "value": "600%", "label": "Attack Surge Post-COVID", "icon": "📈" }
+  ],
+
+  "attacks": [
+    {
+      "id": "rtl",
+      "name": "Right-to-Left Override",
+      "shortName": "RLO Attack",
+      "tagline": "Extension Spoofing",
+      "icon": "🔄",
+      "color": "red",
+      "severity": 9,
+      "description": "Hackers use the Unicode RLO character (U+202E) to reverse the displayed file extension. A dangerous .exe file appears as a harmless .pdf or .txt!",
+      "tldr": "Invisible Unicode character flips file extension text so malware looks like a safe document.",
+
+      "howItWorks": [
+        { "step": 1, "title": "Insert RLO Character", "icon": "🔤", "desc": "The attacker inserts an invisible Unicode character U+202E (Right-to-Left Override) into the filename.", "detail": "Everything after this character renders in reverse (right-to-left) on screen." },
+        { "step": 2, "title": "Mask the Extension", "icon": "🎭", "desc": "The real extension (.exe, .scr, .bat) is hidden using the RLO trick.", "detail": "Example: 'report\\u202Efdp.exe' displays as 'reportexe.pdf' — the user sees a PDF!" },
+        { "step": 3, "title": "Spoof the Icon", "icon": "🖼️", "desc": "The file icon is changed to match a PDF, Word, or image file.", "detail": "Resource hacker tools let attackers swap the .exe icon for a document icon." },
+        { "step": 4, "title": "Victim Executes", "icon": "💀", "desc": "The user opens the 'PDF' and the malware executes silently.", "detail": "Payload can install ransomware, steal data, open backdoors, or join a botnet." }
+      ],
+
+      "examples": [
+        { "realName": "invoice_2024\\u202Efdp.exe", "appearsAs": "invoice_2024exe.pdf", "actualExt": ".exe", "fakeExt": ".pdf", "danger": "critical", "description": "Looks like a PDF but is actually an executable. The RLO character reverses 'fdp.exe' into 'exe.pdf'." },
+        { "realName": "photo_summer\\u202Egnp.scr", "appearsAs": "photo_summerrcs.png", "actualExt": ".scr", "fakeExt": ".png", "danger": "critical", "description": "A screensaver file (.scr) disguised as a PNG image." },
+        { "realName": "resume_john\\u202Etxt.bat", "appearsAs": "resume_johntab.txt", "actualExt": ".bat", "fakeExt": ".txt", "danger": "high", "description": "A batch file masquerading as a text file — executes commands on open." },
+        { "realName": "salary_sheet\\u202Exlsx.cmd", "appearsAs": "salary_sheetdmc.xlsx", "actualExt": ".cmd", "fakeExt": ".xlsx", "danger": "high", "description": "A command file disguised as an Excel spreadsheet." },
+        { "realName": "contract_final\\u202Ecod.exe", "appearsAs": "contract_finalexe.doc", "actualExt": ".exe", "fakeExt": ".doc", "danger": "critical", "description": "An executable disguised as a Word document." },
+        { "realName": "vacation_pics\\u202E3pm.scr", "appearsAs": "vacation_picsrcs.mp3", "actualExt": ".scr", "fakeExt": ".mp3", "danger": "high", "description": "A screensaver file disguised as an MP3 audio file." }
+      ],
+
+      "prevention": [
+        { "tip": "Always Show File Extensions", "icon": "📁", "desc": "In Windows: Folder Options → View → Uncheck 'Hide extensions for known file types'.", "priority": "critical" },
+        { "tip": "Inspect Filenames Carefully", "icon": "🔍", "desc": "If a filename looks odd or has reversed characters, treat it as suspicious.", "priority": "high" },
+        { "tip": "Scan Email Attachments", "icon": "📧", "desc": "Never open attachments from unknown senders. Always scan with antivirus first.", "priority": "high" },
+        { "tip": "Keep Antivirus Updated", "icon": "🛡️", "desc": "Modern antivirus can detect RLO tricks — keep definitions up to date.", "priority": "medium" },
+        { "tip": "Use File Type Verification", "icon": "🧪", "desc": "Right-click → Properties to check the actual file type before opening.", "priority": "high" },
+        { "tip": "Enable Windows Defender SmartScreen", "icon": "🔒", "desc": "SmartScreen warns about unrecognized executables from the internet.", "priority": "medium" }
+      ],
+
+      "quiz": [
+        { "question": "What is the Unicode code for the Right-to-Left Override character?", "options": ["U+200B", "U+202E", "U+FEFF", "U+200D"], "correct": 1, "explanation": "U+202E is the Right-to-Left Override character that reverses text direction." },
+        { "question": "How would 'report\\u202Efdp.exe' appear on screen?", "options": ["report.exe", "reportfdp.exe", "reportexe.pdf", "report.pdf.exe"], "correct": 2, "explanation": "The RLO character reverses 'fdp.exe' to display as 'exe.pdf', so it shows 'reportexe.pdf'." },
+        { "question": "What is the MOST effective defense against RLO attacks?", "options": ["Use dark mode", "Show file extensions in settings", "Disconnect from internet", "Use a phone instead"], "correct": 1, "explanation": "Showing file extensions lets you see the real extension and spot spoofed files." },
+        { "question": "Which file types are commonly disguised using RLO?", "options": [".jpg and .gif", ".exe, .scr, .bat, .cmd", ".html and .css", ".mp4 and .avi"], "correct": 1, "explanation": "Executable file types (.exe, .scr, .bat, .cmd) are disguised as documents or images." },
+        { "question": "Where is the RLO character typically inserted in a filename?", "options": ["At the start", "Before the fake extension part", "After the real extension", "In the folder name"], "correct": 1, "explanation": "The RLO character is placed right before the portion that should appear reversed to fake the extension." }
+      ],
+
+      "codeSnippets": {
+        "vulnerable": {
+          "title": "Trusting Displayed Filename",
+          "lang": "python",
+          "code": "# VULNERABLE: Only checking displayed name\nfilename = uploaded_file.name\nif filename.endswith('.pdf'):\n    save_file(uploaded_file)  # DANGER!\n    # RLO-spoofed .exe passes this check!"
+        },
+        "secure": {
+          "title": "Checking Actual File Bytes (Magic Numbers)",
+          "lang": "python",
+          "code": "import magic\n\n# SECURE: Check actual file type via magic bytes\ndef safe_upload(uploaded_file):\n    mime = magic.from_buffer(uploaded_file.read(2048), mime=True)\n    ALLOWED = ['application/pdf', 'image/png', 'image/jpeg']\n    if mime not in ALLOWED:\n        raise SecurityError('Invalid file type!')\n    # Also strip Unicode control characters\n    import unicodedata\n    clean_name = ''.join(\n        c for c in uploaded_file.name\n        if unicodedata.category(c) != 'Cf'  # Remove format chars\n    )\n    save_file(uploaded_file, clean_name)"
+        }
+      },
+
+      "realWorldCases": [
+        { "year": "2011", "title": "Unitrix Attack on Email", "desc": "Attackers sent emails with RLO-spoofed attachments to government employees. Files appeared as .doc but were actually .exe malware." },
+        { "year": "2019", "title": "WhatsApp RLO Bug (CVE-2019-3568)", "desc": "A vulnerability in WhatsApp allowed RLO characters in filenames, letting attackers send executables disguised as images." },
+        { "year": "2022", "title": "Tax Season RLO Campaign", "desc": "Mass phishing campaign used RLO-spoofed 'tax_return.pdf' files that were actually ransomware executables." }
+      ]
+    },
+
+    {
+      "id": "tabnab",
+      "name": "Tab-Nabbing",
+      "shortName": "Tab Nabbing",
+      "tagline": "The Silent Switch",
+      "icon": "🔀",
+      "color": "blue",
+      "severity": 8,
+      "description": "When you click a link that opens in a new tab, the original tab silently changes to a fake login page. When you switch back, you unknowingly enter your credentials into the attacker's page!",
+      "tldr": "A new tab modifies your original tab behind your back, replacing it with a fake login page.",
+
+      "howItWorks": [
+        { "step": 1, "title": "Malicious Link Click", "icon": "🔗", "desc": "The user clicks a legitimate-looking link that opens in a new tab (target='_blank').", "detail": "The new page has access to the original tab via the window.opener JavaScript property." },
+        { "step": 2, "title": "Background Tab Hijack", "icon": "🔄", "desc": "The new tab runs JavaScript to change the original tab's URL and content.", "detail": "window.opener.location = 'https://fake-gmail-login.com' — your original tab is now a phishing page!" },
+        { "step": 3, "title": "User Returns", "icon": "🔙", "desc": "The user closes the new tab and returns to the original tab.", "detail": "It looks like a normal session timeout — the 'login page' seems expected." },
+        { "step": 4, "title": "Credentials Stolen", "icon": "💀", "desc": "The user enters credentials into the fake login, sending them to the attacker.", "detail": "The attacker now has full access to the user's real account." }
+      ],
+
+      "examples": [
+        { "scenario": "Blog Comment Link", "target": "Gmail Login Page", "description": "You click a link in a blog comment. Your original Gmail tab becomes a fake Gmail login.", "danger": "critical" },
+        { "scenario": "Forum Post Link", "target": "Facebook Login", "description": "A forum post contains a link. When you return, your Facebook tab shows a fake login.", "danger": "high" },
+        { "scenario": "Email Newsletter Link", "target": "Bank Login Page", "description": "A newsletter link opens a new tab. Your banking tab is replaced with a phishing page.", "danger": "critical" },
+        { "scenario": "Social Media Bio Link", "target": "Instagram Login", "description": "You click a profile bio link. Your Instagram tab silently becomes a fake login.", "danger": "high" },
+        { "scenario": "Wiki Reference Link", "target": "Microsoft Login", "description": "A reference link in a wiki article hijacks your Outlook/Microsoft login tab.", "danger": "high" },
+        { "scenario": "Job Board Link", "target": "LinkedIn Login", "description": "A job listing link replaces your LinkedIn tab with a credential harvester.", "danger": "critical" }
+      ],
+
+      "prevention": [
+        { "tip": "Use rel='noopener noreferrer'", "icon": "🔗", "desc": "Developers: Always add rel='noopener noreferrer' to target='_blank' links.", "priority": "critical" },
+        { "tip": "Check the URL Bar", "icon": "🔍", "desc": "When returning to a tab, always verify the URL is the real domain — not a lookalike.", "priority": "high" },
+        { "tip": "Keep Browser Updated", "icon": "🌐", "desc": "Modern browsers set noopener by default. Keep your browser up to date.", "priority": "medium" },
+        { "tip": "Use a Password Manager", "icon": "🗝️", "desc": "Password managers won't autofill on fake domains — built-in phishing protection.", "priority": "critical" },
+        { "tip": "Enable 2FA Everywhere", "icon": "🔐", "desc": "Even if credentials are stolen, 2FA prevents unauthorized access.", "priority": "critical" },
+        { "tip": "Monitor Open Tabs", "icon": "👁️", "desc": "If a tab you didn't touch suddenly shows a login page, be suspicious.", "priority": "high" }
+      ],
+
+      "quiz": [
+        { "question": "Which JavaScript property does tab-nabbing exploit?", "options": ["document.cookie", "window.opener", "localStorage", "navigator.userAgent"], "correct": 1, "explanation": "window.opener gives the new tab a reference to the tab that opened it, allowing URL changes." },
+        { "question": "What HTML attribute prevents tab-nabbing?", "options": ["target='_self'", "rel='noopener'", "onclick='return false'", "disabled='true'"], "correct": 1, "explanation": "rel='noopener' sets window.opener to null, preventing the new tab from manipulating the original." },
+        { "question": "What changes in the original tab during a tab-nabbing attack?", "options": ["Font size", "URL and page content", "Tab color", "Bookmarks"], "correct": 1, "explanation": "The attacker changes both the URL and the entire page content of the original tab." },
+        { "question": "Why do users often fall for tab-nabbing?", "options": ["The page is red", "They expect a session timeout login", "Their mouse stops working", "The screen flashes"], "correct": 1, "explanation": "Users assume their session expired naturally and the login page is legitimate." },
+        { "question": "Which is the BEST automated protection against tab-nabbing phishing?", "options": ["Ad blocker", "Password manager", "Dark mode", "VPN"], "correct": 1, "explanation": "Password managers match domains exactly — they won't autofill credentials on a fake domain." }
+      ],
+
+      "codeSnippets": {
+        "vulnerable": {
+          "title": "Unsafe Link (No Protection)",
+          "lang": "html",
+          "code": "<!-- VULNERABLE: window.opener is accessible -->\n<a href=\"https://example.com\" target=\"_blank\">\n  Click here for article\n</a>\n\n<!-- The opened page can do: -->\n<script>\n  // Attacker's page runs this:\n  if (window.opener) {\n    window.opener.location = 'https://fake-login.com';\n  }\n</script>"
+        },
+        "secure": {
+          "title": "Safe Link (With noopener)",
+          "lang": "html",
+          "code": "<!-- SECURE: window.opener is null -->\n<a href=\"https://example.com\"\n   target=\"_blank\"\n   rel=\"noopener noreferrer\">\n  Click here for article\n</a>\n\n<!-- JavaScript approach: -->\n<script>\n  function safeOpen(url) {\n    const w = window.open(url, '_blank');\n    if (w) w.opener = null; // Extra safety\n  }\n</script>"
+        }
+      },
+
+      "realWorldCases": [
+        { "year": "2010", "title": "Aza Raskin's Discovery", "desc": "Mozilla's Aza Raskin first demonstrated tab-nabbing, showing how Gmail tabs could be silently replaced with phishing pages." },
+        { "year": "2016", "title": "GitHub target='_blank' Fix", "desc": "GitHub added rel='noopener' to all external links after security researchers demonstrated tab-nabbing vulnerabilities." },
+        { "year": "2021", "title": "Browser Default Changes", "desc": "Chrome, Firefox, and Safari all began setting noopener as default behavior for target='_blank' links." }
+      ]
+    },
+
+    {
+      "id": "clickjack",
+      "name": "Click-Jacking",
+      "shortName": "ClickJack",
+      "tagline": "The Invisible Button",
+      "icon": "👆",
+      "color": "green",
+      "severity": 8,
+      "description": "The attacker overlays an invisible iframe on top of a legitimate-looking button. You think you're clicking 'Play Video', but you're actually clicking 'Transfer Money' or 'Enable Camera'!",
+      "tldr": "Invisible iframe tricks you into clicking hidden buttons — like confirming bank transfers or enabling permissions.",
+
+      "howItWorks": [
+        { "step": 1, "title": "Create Attractive Page", "icon": "🎨", "desc": "The attacker builds an enticing webpage — 'Free Movie', 'You Won a Prize!', etc.", "detail": "The page looks professional and legitimate to gain trust." },
+        { "step": 2, "title": "Overlay Invisible iFrame", "icon": "👻", "desc": "The target website (bank, social media) is loaded in an invisible iframe positioned over the button.", "detail": "CSS opacity:0 or visibility:hidden makes the iframe completely invisible." },
+        { "step": 3, "title": "User Clicks", "icon": "🖱️", "desc": "The user clicks the visible 'Play' button but actually clicks the invisible iframe's button.", "detail": "This click could confirm a bank transfer, enable webcam, share a post, or grant permissions!" },
+        { "step": 4, "title": "Action Executed", "icon": "⚡", "desc": "The sensitive action is performed without the user's knowledge.", "detail": "If the user is logged into the target site, the action executes immediately with their session." }
+      ],
+
+      "examples": [
+        { "visible": "▶️ Play Free Movie", "actual": "💸 Transfer $1,000", "description": "A bank transfer confirm button is hidden behind the play button.", "danger": "critical" },
+        { "visible": "🎁 Claim Your Prize", "actual": "📸 Enable Webcam", "description": "A camera permission button is hidden under the prize claim.", "danger": "high" },
+        { "visible": "❤️ Like This Photo", "actual": "👤 Follow Attacker", "description": "A social media follow button is hidden behind the like button.", "danger": "medium" },
+        { "visible": "📥 Download PDF", "actual": "💳 Confirm Purchase", "description": "A purchase confirmation is hidden under the download button.", "danger": "critical" },
+        { "visible": "✅ Accept Cookies", "actual": "🔓 Grant Admin Access", "description": "An admin permission grant is hidden behind a cookie notice.", "danger": "critical" },
+        { "visible": "🔔 Enable Notifications", "actual": "📧 Forward All Emails", "description": "An email forwarding rule is created via the hidden click.", "danger": "high" }
+      ],
+
+      "prevention": [
+        { "tip": "X-Frame-Options Header", "icon": "🔒", "desc": "Developers: Set 'X-Frame-Options: DENY' or 'SAMEORIGIN' in server responses.", "priority": "critical" },
+        { "tip": "CSP frame-ancestors", "icon": "🛡️", "desc": "Use Content-Security-Policy header with frame-ancestors 'self' directive.", "priority": "critical" },
+        { "tip": "Watch for Unexpected Popups", "icon": "👁️", "desc": "If an unexpected permission dialog appears, cancel it and leave the page.", "priority": "high" },
+        { "tip": "JavaScript Frame-Busting", "icon": "💻", "desc": "Add frame-busting code: if(top !== self) top.location = self.location;", "priority": "medium" },
+        { "tip": "Use SameSite Cookies", "icon": "🍪", "desc": "Set SameSite=Strict on cookies to prevent them from being sent in iframe contexts.", "priority": "high" },
+        { "tip": "Require Confirmation Steps", "icon": "✋", "desc": "Sensitive actions should require multiple steps, CAPTCHA, or re-authentication.", "priority": "high" }
+      ],
+
+      "quiz": [
+        { "question": "What is invisible in a clickjacking attack?", "options": ["The button text", "The iFrame overlay", "The browser window", "The keyboard"], "correct": 1, "explanation": "The target website's iFrame is made invisible and positioned over attractive content." },
+        { "question": "Which HTTP header prevents clickjacking?", "options": ["CORS", "X-Frame-Options", "Cache-Control", "Accept-Language"], "correct": 1, "explanation": "X-Frame-Options: DENY or SAMEORIGIN prevents a page from being loaded in an iframe." },
+        { "question": "What is another name for clickjacking?", "options": ["Phishing", "UI Redress Attack", "SQL Injection", "XSS"], "correct": 1, "explanation": "Clickjacking is also called 'UI Redress Attack' because the UI is deceptively repositioned." },
+        { "question": "Why is clickjacking effective when users are logged in?", "options": ["Passwords are visible", "Session cookies are sent automatically", "Browsers are slower", "Screens are brighter"], "correct": 1, "explanation": "The iframe loads the real site with the user's session, so clicks perform authenticated actions." },
+        { "question": "Which CSS property hides the malicious iframe?", "options": ["display:block", "opacity:0", "color:red", "font-size:0"], "correct": 1, "explanation": "opacity:0 makes the iframe completely invisible while keeping it clickable." }
+      ],
+
+      "codeSnippets": {
+        "vulnerable": {
+          "title": "Page Without Frame Protection",
+          "lang": "html",
+          "code": "<!-- VULNERABLE: No frame protection -->\n<!-- Attacker's page: -->\n<style>\n  iframe {\n    position: absolute;\n    top: 0; left: 0;\n    width: 500px;\n    height: 300px;\n    opacity: 0;         /* Invisible! */\n    z-index: 9999;      /* On top! */\n  }\n</style>\n<button>Play Free Movie</button>\n<iframe src=\"https://bank.com/transfer?amount=1000&confirm=true\">\n</iframe>"
+        },
+        "secure": {
+          "title": "Protected With Headers + Frame-Busting",
+          "lang": "html",
+          "code": "<!-- SERVER: Add these headers -->\n# X-Frame-Options: DENY\n# Content-Security-Policy: frame-ancestors 'self'\n\n<!-- CLIENT: Frame-busting script -->\n<script>\n  // Prevent loading in iframe\n  if (window.top !== window.self) {\n    window.top.location = window.self.location;\n  }\n</script>\n\n<!-- ALSO: Use SameSite cookies -->\n# Set-Cookie: session=abc; SameSite=Strict; Secure"
+        }
+      },
+
+      "realWorldCases": [
+        { "year": "2008", "title": "Adobe Flash Settings Hijack", "desc": "Researchers demonstrated clickjacking on Adobe's Flash settings page, enabling webcam/microphone access via invisible clicks." },
+        { "year": "2011", "title": "Facebook Like-Jacking", "desc": "Millions of users unknowingly 'liked' malicious pages via invisible Like buttons overlaid on enticing content." },
+        { "year": "2015", "title": "Twitter Worm via Clickjacking", "desc": "A clickjacking worm spread on Twitter — users unknowingly retweeted malicious content by clicking on hidden buttons." }
+      ]
+    },
+
+    {
+      "id": "typo",
+      "name": "Typosquatting",
+      "shortName": "Typosquat",
+      "tagline": "The Keyboard Slip",
+      "icon": "⌨️",
+      "color": "yellow",
+      "severity": 7,
+      "description": "Hackers register domain names that are common misspellings of popular websites. Type 'gogle.com' instead of 'google.com' and you land on a fake site that steals your data!",
+      "tldr": "Attackers buy misspelled versions of popular domains to catch users who make typing mistakes.",
+
+      "howItWorks": [
+        { "step": 1, "title": "Identify Target", "icon": "🎯", "desc": "The attacker selects popular, high-traffic websites as targets.", "detail": "Google, Amazon, Facebook, banking sites — any site with millions of daily visitors." },
+        { "step": 2, "title": "Register Typo Domains", "icon": "📝", "desc": "Dozens or hundreds of misspelled domain variants are registered.", "detail": "gogle.com, googl.com, gooogle.com, facebok.com — all possible typos are claimed." },
+        { "step": 3, "title": "Clone the Website", "icon": "🖥️", "desc": "An exact visual copy of the original site is hosted on the typo domain.", "detail": "Free SSL certificates are obtained — the green lock appears, building false trust." },
+        { "step": 4, "title": "Harvest Credentials", "icon": "🎣", "desc": "Anyone who mistypes the URL lands on the fake site and enters their credentials.", "detail": "Thousands of users make typos daily — automated credential harvesting runs 24/7." }
+      ],
+
+      "typoTypes": [
+        { "type": "Missing Letter", "real": "google.com", "typo": "gogle.com", "description": "One letter is accidentally skipped" },
+        { "type": "Extra Letter", "real": "google.com", "typo": "gooogle.com", "description": "A letter is typed twice" },
+        { "type": "Wrong Letter", "real": "amazon.com", "typo": "amzon.com", "description": "Wrong key is pressed" },
+        { "type": "Adjacent Key", "real": "facebook.com", "typo": "gacebook.com", "description": "A neighboring key on the keyboard is hit" },
+        { "type": "Swapped Letters", "real": "youtube.com", "typo": "yotube.com", "description": "Two letters are transposed" },
+        { "type": "Wrong TLD", "real": "amazon.com", "typo": "amazon.co", "description": "The top-level domain is mistyped" },
+        { "type": "Added Hyphen", "real": "paypal.com", "typo": "pay-pal.com", "description": "A hyphen is added to confuse" },
+        { "type": "Plural Form", "real": "twitter.com", "typo": "twitters.com", "description": "An 's' is added to the domain name" },
+        { "type": "Missing Dot", "real": "www.google.com", "typo": "wwwgoogle.com", "description": "The dot between www and domain is missed" },
+        { "type": "Homophone", "real": "flickr.com", "typo": "flicker.com", "description": "A word that sounds the same but is spelled differently" }
+      ],
+
+      "examples": [],
+
+      "prevention": [
+        { "tip": "Use Bookmarks", "icon": "🔖", "desc": "Save important sites as bookmarks — never type URLs manually for banking, email, etc.", "priority": "critical" },
+        { "tip": "Enable Browser Autocomplete", "icon": "✨", "desc": "Let your browser suggest URLs from history to avoid manual typing errors.", "priority": "high" },
+        { "tip": "Use Search Engines", "icon": "🔍", "desc": "Search for the site on Google instead of typing the URL directly.", "priority": "medium" },
+        { "tip": "Verify the URL Carefully", "icon": "🔒", "desc": "Always double-check the address bar — look for typos before entering credentials.", "priority": "high" },
+        { "tip": "Register Your Own Typos", "icon": "🏢", "desc": "Businesses: Register common misspellings of your domain defensively.", "priority": "medium" },
+        { "tip": "Use DNS Filtering", "icon": "🌐", "desc": "Enterprise DNS filters can block known typosquatting domains.", "priority": "medium" }
+      ],
+
+      "quiz": [
+        { "question": "What type of typosquatting is 'gogle.com'?", "options": ["Extra Letter", "Missing Letter", "Wrong TLD", "Swapped Letters"], "correct": 1, "explanation": "One 'o' is missing from 'google' — this is a Missing Letter typosquatting." },
+        { "question": "What is the BEST way to avoid typosquatting?", "options": ["Use a VPN", "Use bookmarks", "Use incognito mode", "Use an ad blocker"], "correct": 1, "explanation": "Bookmarks eliminate the chance of typos entirely since you never type the URL." },
+        { "question": "What does a typosquatter do?", "options": ["Hacks servers", "Registers misspelled domains", "Hacks emails", "Hacks WiFi"], "correct": 1, "explanation": "Typosquatters proactively register domains with common spelling mistakes." },
+        { "question": "Why do typosquatting sites often have SSL certificates?", "options": ["They're required by law", "To show the green lock and build trust", "For faster loading", "For better SEO"], "correct": 1, "explanation": "The green lock makes users trust the fake site — SSL doesn't verify the site's legitimacy." },
+        { "question": "Which domain is a typosquat of 'paypal.com'?", "options": ["paypal.org", "pay-pal.com", "papal.com", "All of the above"], "correct": 3, "explanation": "All three are common typosquatting variants — wrong TLD, added hyphen, and wrong letters." }
+      ],
+
+      "codeSnippets": {
+        "vulnerable": {
+          "title": "Trusting User-Typed URLs",
+          "lang": "javascript",
+          "code": "// VULNERABLE: No URL validation\nconst url = userInput;\nwindow.location.href = url;\n// User types 'gogle.com' → lands on malware site"
+        },
+        "secure": {
+          "title": "URL Validation + Known Domain Whitelist",
+          "lang": "javascript",
+          "code": "// SECURE: Validate against known domains\nconst TRUSTED_DOMAINS = [\n  'google.com', 'gmail.com',\n  'amazon.com', 'paypal.com'\n];\n\nfunction validateURL(url) {\n  try {\n    const parsed = new URL(url);\n    const domain = parsed.hostname.replace('www.', '');\n    if (!TRUSTED_DOMAINS.includes(domain)) {\n      showWarning(`⚠️ '${domain}' is not in your trusted list!`);\n      return false;\n    }\n    return true;\n  } catch(e) {\n    showWarning('Invalid URL format!');\n    return false;\n  }\n}"
+        }
+      },
+
+      "realWorldCases": [
+        { "year": "2006", "title": "goggle.com Malware Distribution", "desc": "The domain 'goggle.com' was used to distribute malware to thousands of users who mistyped 'google.com'." },
+        { "year": "2018", "title": "amaz0n.com Phishing", "desc": "Attackers used 'amaz0n.com' (zero instead of 'o') to harvest Amazon credentials during Prime Day." },
+        { "year": "2020", "title": "COVID-19 Typosquatting Wave", "desc": "Over 100,000 COVID-related typosquatting domains were registered to spread misinformation and steal data." }
+      ]
+    },
+
+    {
+      "id": "idn",
+      "name": "IDN Homograph Attack",
+      "shortName": "IDN/Punycode",
+      "tagline": "Advanced Punycode Spoofing",
+      "icon": "🎭",
+      "color": "purple",
+      "severity": 9,
+      "description": "Attackers use Unicode characters from different scripts (Cyrillic, Greek, Armenian) to create domain names that look identical to real ones but are completely different. 'а' (Cyrillic) and 'a' (Latin) look the same but are different characters!",
+      "tldr": "Visually identical characters from different alphabets are used to register fake domains that look exactly like real ones.",
+
+      "howItWorks": [
+        { "step": 1, "title": "Find Look-alike Characters", "icon": "🔤", "desc": "The attacker finds visually identical characters from different scripts (Cyrillic, Greek, Armenian).", "detail": "Latin 'a' (U+0061) and Cyrillic 'а' (U+0430) look exactly the same but are different Unicode code points!" },
+        { "step": 2, "title": "Register Punycode Domain", "icon": "🌐", "desc": "The look-alike domain is registered in Punycode (xn--) format with a domain registrar.", "detail": "аpple.com → registers as xn--pple-43d.com in the DNS system." },
+        { "step": 3, "title": "Setup SSL + Clone Site", "icon": "🔒", "desc": "A free SSL certificate is obtained and an exact clone of the target site is deployed.", "detail": "Green lock + identical design = the user has no visual reason to suspect anything." },
+        { "step": 4, "title": "Harvest Credentials", "icon": "💀", "desc": "Victims visit the fake site, see the green lock, and enter their credentials.", "detail": "The attacker captures credentials in real-time and immediately accesses the real account." }
+      ],
+
+      "examples": [
+        { "real": "apple.com", "fake": "аpple.com", "punycode": "xn--pple-43d.com", "chars": [{ "pos": 0, "real": "a (Latin U+0061)", "fake": "а (Cyrillic U+0430)" }], "category": "Tech", "danger": "critical" },
+        { "real": "google.com", "fake": "ɡooɡle.com", "punycode": "xn--ooɡle-53da.com", "chars": [{ "pos": 0, "real": "g (Latin)", "fake": "ɡ (IPA U+0261)" }, { "pos": 3, "real": "g (Latin)", "fake": "ɡ (IPA U+0261)" }], "category": "Tech", "danger": "critical" },
+        { "real": "paypal.com", "fake": "pаypal.com", "punycode": "xn--pypal-o4a.com", "chars": [{ "pos": 1, "real": "a (Latin)", "fake": "а (Cyrillic U+0430)" }], "category": "Finance", "danger": "critical" },
+        { "real": "facebook.com", "fake": "fаcebook.com", "punycode": "xn--fcebook-s1a.com", "chars": [{ "pos": 1, "real": "a (Latin)", "fake": "а (Cyrillic U+0430)" }], "category": "Social", "danger": "high" },
+        { "real": "microsoft.com", "fake": "mіcrosoft.com", "punycode": "xn--mcrosoft-c1i.com", "chars": [{ "pos": 1, "real": "i (Latin)", "fake": "і (Cyrillic U+0456)" }], "category": "Tech", "danger": "high" },
+        { "real": "netflix.com", "fake": "netfliх.com", "punycode": "xn--netfli-m5a.com", "chars": [{ "pos": 6, "real": "x (Latin)", "fake": "х (Cyrillic U+0445)" }], "category": "Entertainment", "danger": "medium" },
+        { "real": "amazon.com", "fake": "аmаzon.com", "punycode": "xn--mzon-jua7b.com", "chars": [{ "pos": 0, "real": "a (Latin)", "fake": "а (Cyrillic U+0430)" }, { "pos": 2, "real": "a (Latin)", "fake": "а (Cyrillic U+0430)" }], "category": "eCommerce", "danger": "critical" },
+        { "real": "twitter.com", "fake": "twіtter.com", "punycode": "xn--twtter-6hf.com", "chars": [{ "pos": 2, "real": "i (Latin)", "fake": "і (Cyrillic U+0456)" }], "category": "Social", "danger": "high" }
+      ],
+
+      "confusables": [
+        { "latin": "a", "lookalike": "а", "script": "Cyrillic", "unicode": "U+0430" },
+        { "latin": "e", "lookalike": "е", "script": "Cyrillic", "unicode": "U+0435" },
+        { "latin": "o", "lookalike": "о", "script": "Cyrillic", "unicode": "U+043E" },
+        { "latin": "p", "lookalike": "р", "script": "Cyrillic", "unicode": "U+0440" },
+        { "latin": "c", "lookalike": "с", "script": "Cyrillic", "unicode": "U+0441" },
+        { "latin": "x", "lookalike": "х", "script": "Cyrillic", "unicode": "U+0445" },
+        { "latin": "i", "lookalike": "і", "script": "Cyrillic", "unicode": "U+0456" },
+        { "latin": "s", "lookalike": "ѕ", "script": "Cyrillic", "unicode": "U+0455" },
+        { "latin": "d", "lookalike": "ԁ", "script": "Cyrillic", "unicode": "U+0501" },
+        { "latin": "g", "lookalike": "ɡ", "script": "IPA Ext.", "unicode": "U+0261" },
+        { "latin": "n", "lookalike": "ո", "script": "Armenian", "unicode": "U+0578" },
+        { "latin": "h", "lookalike": "һ", "script": "Cyrillic", "unicode": "U+04BB" },
+        { "latin": "y", "lookalike": "у", "script": "Cyrillic", "unicode": "U+0443" },
+        { "latin": "k", "lookalike": "κ", "script": "Greek", "unicode": "U+03BA" },
+        { "latin": "v", "lookalike": "ν", "script": "Greek", "unicode": "U+03BD" },
+        { "latin": "w", "lookalike": "ω", "script": "Greek", "unicode": "U+03C9" }
+      ],
+
+      "prevention": [
+        { "tip": "Enable Punycode Display", "icon": "⚙️", "desc": "Firefox: Set network.IDN_show_punycode = true in about:config to reveal fake domains.", "priority": "critical" },
+        { "tip": "Inspect the URL Carefully", "icon": "🔍", "desc": "Check the address bar for 'xn--' prefix which indicates non-ASCII characters.", "priority": "high" },
+        { "tip": "Use a Password Manager", "icon": "🗝️", "desc": "Password managers compare domains exactly — they won't autofill on fake domains.", "priority": "critical" },
+        { "tip": "Navigate via Bookmarks", "icon": "🔖", "desc": "Use saved bookmarks for important sites instead of clicking links.", "priority": "high" },
+        { "tip": "Check SSL Certificate Details", "icon": "📜", "desc": "Click the lock icon and inspect the certificate — look for suspicious issuer details.", "priority": "medium" },
+        { "tip": "Use Browser Protections", "icon": "🌐", "desc": "Chrome and Edge already block many mixed-script IDN domains and show punycode.", "priority": "medium" }
+      ],
+
+      "quiz": [
+        { "question": "What is the Punycode prefix?", "options": ["http://", "xn--", "ssl://", "idn--"], "correct": 1, "explanation": "xn-- is the ASCII-Compatible Encoding prefix indicating a domain contains non-ASCII characters." },
+        { "question": "What is the difference between Cyrillic 'а' and Latin 'a'?", "options": ["Size", "Color", "Unicode Code Point", "Font weight"], "correct": 2, "explanation": "They look identical but have different Unicode code points — Latin a = U+0061, Cyrillic а = U+0430." },
+        { "question": "Which tool best detects fake IDN domains automatically?", "options": ["Calculator", "Password Manager", "Notepad", "Paint"], "correct": 1, "explanation": "Password managers compare domains at the byte level — they won't autofill on a fake domain." },
+        { "question": "What does 'аpple.com' (with Cyrillic 'а') become in Punycode?", "options": ["apple.com", "xn--pple-43d.com", "apple-fake.com", "xn--apple.com"], "correct": 1, "explanation": "The Cyrillic 'а' converts to a Punycode representation: xn--pple-43d.com" },
+        { "question": "Which script is MOST commonly used for homograph attacks on English sites?", "options": ["Chinese", "Cyrillic", "Arabic", "Japanese"], "correct": 1, "explanation": "Cyrillic has the most characters that visually match Latin letters (a, e, o, p, c, x, etc.)." }
+      ],
+
+      "codeSnippets": {
+        "vulnerable": {
+          "title": "Visual URL Check Only",
+          "lang": "javascript",
+          "code": "// VULNERABLE: Only checking visual text\nfunction checkLink(url) {\n  // This shows 'apple.com' even if it uses Cyrillic!\n  document.getElementById('display').textContent = url;\n  // User sees 'apple.com' and trusts it\n}"
+        },
+        "secure": {
+          "title": "Unicode/Punycode Detection",
+          "lang": "javascript",
+          "code": "// SECURE: Detect non-ASCII characters in domains\nfunction checkDomainSafety(domain) {\n  const suspicious = [];\n  for (let i = 0; i < domain.length; i++) {\n    const code = domain.codePointAt(i);\n    if (code > 127 && domain[i] !== '.') {\n      suspicious.push({\n        char: domain[i],\n        position: i,\n        codePoint: `U+${code.toString(16).toUpperCase()}`\n      });\n    }\n  }\n  if (suspicious.length > 0) {\n    alert(`⚠️ SUSPICIOUS: ${suspicious.length} non-ASCII chars found!`);\n    // Convert to punycode for inspection\n    const encoder = new URL(`https://${domain}`);\n    alert(`Punycode: ${encoder.hostname}`);\n  }\n  return suspicious.length === 0;\n}"
+        }
+      },
+
+      "realWorldCases": [
+        { "year": "2017", "title": "xn--80ak6aa92e.com (аpple.com)", "desc": "Security researcher Xudong Zheng registered an IDN domain that appeared as 'apple.com' in Chrome and Firefox, demonstrating the attack to millions." },
+        { "year": "2018", "title": "Cryptocurrency Phishing Wave", "desc": "Attackers used IDN homograph domains to mimic cryptocurrency exchanges like Binance and Coinbase, stealing millions in crypto." },
+        { "year": "2020", "title": "Banking IDN Attacks in Europe", "desc": "Multiple European banks were targeted with Cyrillic-based IDN domains, leading to thousands of compromised accounts." }
+      ]
+    }
+  ],
+
+  "comparisonTable": {
+    "headers": ["Feature", "RLO Attack", "Tab-Nabbing", "Click-Jacking", "Typosquatting", "IDN Homograph"],
+    "rows": [
+      { "feature": "Attack Vector", "values": ["File name", "Browser tabs", "Invisible iframe", "Mistyped URL", "Unicode domain"] },
+      { "feature": "Target", "values": ["File downloads", "Open tabs", "Button clicks", "URL typing", "Link clicking"] },
+      { "feature": "User Action Required", "values": ["Open file", "Switch tabs", "Click button", "Type URL", "Click link"] },
+      { "feature": "Technical Skill Needed", "values": ["Low", "Medium", "Medium", "Low", "High"] },
+      { "feature": "Detection Difficulty", "values": ["Medium", "Hard", "Hard", "Easy", "Very Hard"] },
+      { "feature": "Best Defense", "values": ["Show extensions", "rel=noopener", "X-Frame-Options", "Bookmarks", "Password manager"] }
+    ]
+  },
+
+  "glossary": [
+    { "term": "RLO", "definition": "Right-to-Left Override — Unicode character (U+202E) that reverses text rendering direction." },
+    { "term": "Punycode", "definition": "An encoding syntax (xn-- prefix) used to represent Unicode characters in ASCII-only domain names." },
+    { "term": "IDN", "definition": "Internationalized Domain Name — a domain name containing non-ASCII characters from various scripts." },
+    { "term": "Homograph", "definition": "Characters from different scripts that look visually identical (e.g., Latin 'a' vs Cyrillic 'а')." },
+    { "term": "Clickjacking", "definition": "Also called UI Redress Attack — tricking users into clicking invisible elements overlaid on legitimate content." },
+    { "term": "Tab-Nabbing", "definition": "An attack where a newly opened tab modifies the content of the original tab via window.opener." },
+    { "term": "Typosquatting", "definition": "Registering misspelled variants of popular domains to capture traffic from user typing errors." },
+    { "term": "X-Frame-Options", "definition": "HTTP header that controls whether a page can be embedded in iframes (DENY, SAMEORIGIN, or ALLOW-FROM)." },
+    { "term": "noopener", "definition": "A link relation (rel='noopener') that prevents the opened page from accessing window.opener." },
+    { "term": "Phishing", "definition": "Social engineering attack using fake websites or messages to steal credentials or personal data." },
+    { "term": "SSL/TLS", "definition": "Encryption protocol that provides the green padlock — but does NOT guarantee a site is legitimate." },
+    { "term": "CSRF", "definition": "Cross-Site Request Forgery — an attack that forces authenticated users to perform unintended actions." },
+    { "term": "Frame-Busting", "definition": "JavaScript technique to prevent a page from being loaded inside an iframe." },
+    { "term": "Magic Bytes", "definition": "The first few bytes of a file that identify its true type, regardless of the file extension." },
+    { "term": "Social Engineering", "definition": "Manipulating people into performing actions or divulging confidential information through psychological tricks." }
+  ]
+}
